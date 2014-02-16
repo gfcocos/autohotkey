@@ -64,8 +64,8 @@ return
 
 ;;在命令行窗口启用快捷键粘贴
 #IfWinActive ahk_class ConsoleWindowClass
-^v::
-SendInput %clipboard%
+^v::SendInput %clipboard%
+#q::PostMessage, 0x112, 0xF060,,,ahk_class ConsoleWindowClass
 #IfWinActive
 
 ;;打开或激活Notepad++
@@ -79,19 +79,7 @@ send ^c
 sleep,100
 IfExist, %clipboard%
     Run, properties %clipboard%
-
-CopySelection()
-{
-    clipboard =
-    send ^c 
-    ClipWait, 1
-    if ErrorLevel
-    {
-        MsgBox, The attempt to copy text onto the clipboard failed.
-        return
-    }
-    return clipboard
-}
+return
 
 ;;Alt+1 copy文件名 
 !1::
@@ -186,26 +174,26 @@ return
 
 ;;http://www.autohotkey.com/board/topic/79494-go-to-anything-browseexploregoogle-the-selected-text/
 ;; Go to anything that is in the currently selected text: URLs, email addresses, Windows paths, or just "Google it"
-$#G::
-    ;Tip("Clipping...")  ;; include my mouse-tip library for this https://gist.github.com/2400547
-    clip := CopyToClipboard()
-    if (!clip) {
-        return
-    }
-    addr := ExtractAddress(clip)
-    if (!addr)
-    {
-        ; Google it
-        ;Tip("Searching for [" SubStr(clip, 1, 50) "] ...")
-        addr := "http://www.google.com.hk/search?q=" . clip
-    }
-    else {
-        ; Go to it using system's default methods for the address
-        ;Tip("Going to " Substr(addr, 1, 25) " ...")
-    }
+;$#G::
+;    ;Tip("Clipping...")  ;; include my mouse-tip library for this https://gist.github.com/2400547
+;    clip := CopyToClipboard()
+;    if (!clip) {
+;        return
+;    }
+;    addr := ExtractAddress(clip)
+;    if (!addr)
+;    {
+;        ; Google it
+;        ;Tip("Searching for [" SubStr(clip, 1, 50) "] ...")
+;        addr := "http://www.google.com.hk/search?q=" . clip
+;    }
+;    else {
+;        ; Go to it using system's default methods for the address
+;        ;Tip("Going to " Substr(addr, 1, 25) " ...")
+;    }
 
-    Run %addr%
-    return
+;    Run %addr%
+;    return
 
 ;; utility functions
 

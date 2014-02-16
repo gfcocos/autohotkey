@@ -3,7 +3,8 @@ DESKTOP_F1_KEYMAP = C:\BigMoney
 EVERYTHING_APPPATH= C:\Program Files\Everything\Everything.exe
 SUBLIME_APPPATH   = C:\Sublime Text 2\sublime_text.exe
 
-#include menu.ahk
+;#include menu.ahk
+#Include common_function.ahk
 #Include main.ahk
 
 
@@ -133,20 +134,20 @@ Return
 ;------------------------------------------------------------------------------
 ; Google translate selected text
 ;------------------------------------------------------------------------------
-;#g::
-;MyClip := ClipboardAll
-;Clipboard = ; empty the clipboard
-;Send, ^c
-;ClipWait, 2
-;if ErrorLevel  ; ClipWait timed out.
-;{
-;    return
-;}
-;StringReplace, Clipboard, Clipboard, `%, `%25, All ; has to come first
-;StringReplace, Clipboard, Clipboard, `r`n, `%0A, All
-;Run % "http://translate.google.com/#auto|en|" . clipboard ; uriEncode(clipboard)
-;Clipboard := MyClip
-;return
+#g::
+MyClip := ClipboardAll
+Clipboard = ; empty the clipboard
+Send, ^c
+ClipWait, 2
+if ErrorLevel  ; ClipWait timed out.
+{
+    return
+}
+StringReplace, Clipboard, Clipboard, `%, `%25, All ; has to come first
+StringReplace, Clipboard, Clipboard, `r`n, `%0A, All
+Run % "http://translate.google.com/#auto|zh-CN|" . clipboard ; uriEncode(clipboard)
+Clipboard := MyClip
+return
 
 ;------------------------------------------------------------------------------
 ; Shortcuts that do not fall under misspellings or typos
@@ -515,7 +516,7 @@ return
 ;------------------------------------------------------------------------------
 ; Win+s: save file
 ;------------------------------------------------------------------------------
-;#s::Send, ^s
+#s::Send, ^s
 
 
 ;------------------------------------------------------------------------------
@@ -555,9 +556,19 @@ return
 return
 
 ;------------------------------------------------------------------------------
-; WIN+Q: close current window
+; WIN+Q: close current windowd
+;PostMessage, WM_SYSCOMMAND, SC_CLOSE ;Send !{F4}
 ;------------------------------------------------------------------------------
-#Q::Send !{F4}
+#q::
+Send !{F4}
+;Sleep 1000  ; 让用户有机会释放按键 (以防释放它们时再次唤醒显视器).
+; 关闭显示器:
+;SendMessage, 0x112, 0xF170, 2,, Program Manager  ; 0x112 为 WM_SYSCOMMAND, 0xF170 为 SC_MONITORPOWER.
+WinGetTitle, wintitle, A
+
+;Send exit
+;Send {ENTER}
+return
 
 
 ; Example #1: 最大化活动窗口并显示其唯一 ID:
@@ -628,6 +639,7 @@ desktop_f1()
   F3:: desktop_f3()
   F1:: desktop_f1()
 
+
 explorer_alt_g()
 {
   path := CopySelection()
@@ -635,17 +647,17 @@ explorer_alt_g()
       return 
   SplitPath, path, , dir 
   ;clipboard = %dir%
-  MouseGetPos,x0
-  tooltip File Location: "%clipboard%" copied.
-  loop
-  {
-      MouseGetPos,x1 ;
-      if x1!=%x0%
-      { 
-          tooltip
-          break
-      }
-  }
+  ;MouseGetPos,x0
+  ;tooltip File Location: "%clipboard%" copied.
+  ;loop
+  ;{
+  ;    MouseGetPos,x1 ;
+  ;    if x1!=%x0%
+  ;    { 
+  ;        tooltip
+  ;        break
+  ;    }
+  ;}
   Run,C:\Program Files\Git\bin\sh.exe  --login -i, , , thePid
   Send,cd %dir%{Enter}
 }

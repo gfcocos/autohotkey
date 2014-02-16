@@ -99,10 +99,10 @@ OpenScriptDir:
 Run, %A_ScriptDir%
 return
 
-#s::
-~RButton::
-RapidHotkey("Utils""Settings""Folders", 2,0.4,1)
-return
+;#s::
+;~RButton::
+;RapidHotkey("Utils""Settings""Folders", 2,0.4,1)
+;return
 
 Folders:
 Settings:
