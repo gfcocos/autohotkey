@@ -1,4 +1,4 @@
-; IMPORTANT INFO ABOUT GETTING STARTED: Lines that start with a
+ï»¿; IMPORTANT INFO ABOUT GETTING STARTED: Lines that start with a
 ; semicolon, such as this one, are comments.  They are not executed.
 
 ; This script has a special filename and path because it is automatically
@@ -22,8 +22,8 @@ sleep 1000
 Reload
 return
 
-;;GmailµØÖ·ËõĞ´
-:o:g@::gaofengdiskonline@gmail.com
+;;Gmailåœ°å€ç¼©å†™
+:o:g@::gfcocos@gmail.com
 :o:$s::$(SolutionDir)
 :o:$p::$(ProjectDir)
 
@@ -44,20 +44,16 @@ ENABLE(id) ;By Mosaic1 at http://www.xtremevbtalk.com/archive/index.php/t-258725
   DllCall("user32\DrawMenuBar","UInt",id)
 }
 
-^!t::
-
-return
-
 ^!F4::
 WinGetActiveTitle, Title
 WinGet, PID, PID, %Title%
-MsgBox, 0x104, Ç¿ÖÆ¹Ø±Õ½ø³Ì, ½«Ç¿ÖÆ¹Ø±Õ±êÌâÎª"%Title%"µÄ´°¿Ú, ½ø³ÌºÅÎª%PID%, ÊÇ·ñ¼ÌĞø?
+MsgBox, 0x104, å¼ºåˆ¶å…³é—­è¿›ç¨‹, å°†å¼ºåˆ¶å…³é—­æ ‡é¢˜ä¸º"%Title%"çš„çª—å£, è¿›ç¨‹å·ä¸º%PID%, æ˜¯å¦ç»§ç»­?
 IfMsgBox, No
     return
 Process, Close, %PID%
 return
 
-;;ÔËĞĞ¶Á¿¨Æ÷²âÊÔÒ³Ãæ
+;;è¿è¡Œè¯»å¡å™¨æµ‹è¯•é¡µé¢
 ^+a::
 Run, %A_ProgramFiles%\Internet Explorer\iexplore.exe D:\Subversion\SmartCardReader\CardReaderATL\TestCardReader.html
 return
@@ -66,18 +62,18 @@ return
 Run, %A_ProgramFiles%\Internet Explorer\iexplore.exe D:\Subversion\VCProject_trunk\ScannerTwain\DWScannerTwainATL\DWScannerTest.html
 return
 
-;;ÔÚÃüÁîĞĞ´°¿ÚÆôÓÃ¿ì½İ¼üÕ³Ìù
+;;åœ¨å‘½ä»¤è¡Œçª—å£å¯ç”¨å¿«æ·é”®ç²˜è´´
 #IfWinActive ahk_class ConsoleWindowClass
 ^v::
 SendInput %clipboard%
 #IfWinActive
 
-;;´ò¿ª»ò¼¤»îNotepad++
+;;æ‰“å¼€æˆ–æ¿€æ´»Notepad++
 #IfWinExist ahk_class Notepad++
 #n::WinActivate
 #IfWinExist
 
-;;´ò¿ªÎÄ¼şµÄÊôĞÔ´°¿Ú
+;;æ‰“å¼€æ–‡ä»¶çš„å±æ€§çª—å£
 ^p::
 send ^c 
 sleep,100
@@ -97,7 +93,7 @@ CopySelection()
     return clipboard
 }
 
-;;Alt+1 copyÎÄ¼şÃû 
+;;Alt+1 copyæ–‡ä»¶å 
 !1::
 path := CopySelection()
 if path = 
@@ -108,7 +104,7 @@ MouseGetPos,x0
 tooltip File name: "%clipboard%" copied.
 loop
 {
-    MouseGetPos,x1 ;Êó±êÅ²¶¯È¡ÏûÌáÊ¾¿ò
+    MouseGetPos,x1 ;é¼ æ ‡æŒªåŠ¨å–æ¶ˆæç¤ºæ¡†
     if x1!=%x0%
     { 
         tooltip
@@ -116,7 +112,7 @@ loop
     }
 }
 return 
-;;alt+2 copy ´ËÎÄ¼şËùÔÚµÄÂ·¾¶Ãû 
+;;alt+2 copy æ­¤æ–‡ä»¶æ‰€åœ¨çš„è·¯å¾„å 
 !2:: 
 path := CopySelection()
 if path = 
@@ -127,7 +123,7 @@ MouseGetPos,x0
 tooltip File Location: "%clipboard%" copied.
 loop
 {
-    MouseGetPos,x1 ;Êó±êÅ²¶¯È¡ÏûÌáÊ¾¿ò
+    MouseGetPos,x1 ;é¼ æ ‡æŒªåŠ¨å–æ¶ˆæç¤ºæ¡†
     if x1!=%x0%
     { 
         tooltip
@@ -136,7 +132,7 @@ loop
 }
 return 
 
-;;Alt+3 copy ´ËÎÄ¼şµÄÈ«Â·¾¶Ãû 
+;;Alt+3 copy æ­¤æ–‡ä»¶çš„å…¨è·¯å¾„å 
 !3:: 
 path := CopySelection()
 if path = 
@@ -146,7 +142,7 @@ clipboard = %path%
 tooltip Path: "%clipboard%" copied
 loop
 {
-    MouseGetPos,x1 ;Êó±êÅ²¶¯È¡ÏûÌáÊ¾¿ò
+    MouseGetPos,x1 ;é¼ æ ‡æŒªåŠ¨å–æ¶ˆæç¤ºæ¡†
     if x1!=%x0%
     { 
         tooltip
@@ -155,7 +151,7 @@ loop
 }
 return
 
-;;Alt+4 copy ´ËÎÄ¼şµÄÈ«Â·¾¶Ãû£¬²¢¶ÔÄ¿Â¼·Ö¸ô·û½øĞĞ×ªÒå
+;;Alt+4 copy æ­¤æ–‡ä»¶çš„å…¨è·¯å¾„åï¼Œå¹¶å¯¹ç›®å½•åˆ†éš”ç¬¦è¿›è¡Œè½¬ä¹‰
 !4:: 
 path := CopySelection()
 if path = 
@@ -166,7 +162,7 @@ StringReplace, clipboard, clipboard, \, \\, All
 tooltip Text: %clipboard% copied
 loop
 {
-    MouseGetPos,x1 ;Êó±êÅ²¶¯È¡ÏûÌáÊ¾¿ò
+    MouseGetPos,x1 ;é¼ æ ‡æŒªåŠ¨å–æ¶ˆæç¤ºæ¡†
     if x1!=%x0%
     { 
         tooltip
@@ -278,7 +274,7 @@ ClipWait, 1 ; Wait clipboard has content
 clipboard = %bak%`r`n%clipboard% ; Append new content to old content's next line
 return
 
-;;ÔÚVSÖĞAttachµ½IE
+;;åœ¨VSä¸­Attachåˆ°IE
 #p::
 Send, !d
 Sleep, 1000
@@ -288,34 +284,34 @@ Sleep, 1000
 Send, ie
 return
 
-#c::
-CoordMode,Mouse,Screen
-MouseGetPos,x0,, win_id, ctrl_id
-WinGetTitle, win_title, ahk_id %win_id%
-ControlGetText, ctrl_text, %ctrl_id%, ahk_id %win_id%
-ActiveWinTitle := MouseIsOverTitlebar()
-If ActiveWinTitle!=0 ;Êó±êÏÂÊÇ±êÌâÀ¸
-{
-    ToolTip, Window Title:"%win_title%" copied.
-    clipboard=%win_title%
-}
-else ;Êó±êÏÂÊÇ¿Ø¼ş
-{
-    if ctrl_text = 
-        return
-    ToolTip, Control Text:"%ctrl_text%" copied.
-    clipboard=%ctrl_text%
-}
-loop
-{
-    MouseGetPos,x1 ;Êó±êÅ²¶¯È¡ÏûÌáÊ¾¿ò
-    if x1!=%x0%
-    { 
-        tooltip
-        break
-    }
-}
-return
+;#c::
+;CoordMode,Mouse,Screen
+;MouseGetPos,x0,, win_id, ctrl_id
+;WinGetTitle, win_title, ahk_id %win_id%
+;ControlGetText, ctrl_text, %ctrl_id%, ahk_id %win_id%
+;ActiveWinTitle := MouseIsOverTitlebar()
+;If ActiveWinTitle!=0 ;é¼ æ ‡ä¸‹æ˜¯æ ‡é¢˜æ 
+;{
+;    ToolTip, Window Title:"%win_title%" copied.
+;    clipboard=%win_title%
+;}
+;else ;é¼ æ ‡ä¸‹æ˜¯æ§ä»¶
+;{
+;    if ctrl_text = 
+;        return
+;    ToolTip, Control Text:"%ctrl_text%" copied.
+;    clipboard=%ctrl_text%
+;}
+;loop
+;{
+;    MouseGetPos,x1 ;é¼ æ ‡æŒªåŠ¨å–æ¶ˆæç¤ºæ¡†
+;    if x1!=%x0%
+;    { 
+;        tooltip
+;        break
+;    }
+;}
+;return
 
 MouseIsOverTitlebar(HeightOfTitlebar = 30)
 {
@@ -349,7 +345,7 @@ cb = %clipboard%
 Run, D:\Portable\BinCalc\BinCalc.exe %cb%
 return
 
-;½«Ñ¡ÖĞµÄÊı×Ö×ª»»ÎªHEXĞÎÊ½²¢¸´ÖÆµ½¼ôÇĞ°åÖĞ
+;å°†é€‰ä¸­çš„æ•°å­—è½¬æ¢ä¸ºHEXå½¢å¼å¹¶å¤åˆ¶åˆ°å‰ªåˆ‡æ¿ä¸­
 ^!h::
 SetFormat, IntegerFast, H
 Send ^c
@@ -380,7 +376,7 @@ Menu3:
 MsgBox % A_ThisLabel
 Return
 
-;;»ñÈ¡»·¾³±äÁ¿PATHµÄÖµ
+;;è·å–ç¯å¢ƒå˜é‡PATHçš„å€¼
 ;;EnvGet, OutputVar, Path
 
 #t::
@@ -405,13 +401,13 @@ return
 CapsLock::Send !{Tab}
 
 #IfWinActive ahk_class CabinetWClass
-; open ¡®cmd¡¯ in the current directory
+; open â€˜cmdâ€™ in the current directory
 ;
 ^+c::
 OpenCmdInCurrent()
 return
 #IfWinActive
-; Opens the command shell ¡®cmd¡¯ in the directory browsed in Explorer.
+; Opens the command shell â€˜cmdâ€™ in the directory browsed in Explorer.
 ; Note: expecting to be run when the active window is Explorer.
 ;
 OpenCmdInCurrent()
@@ -424,7 +420,7 @@ OpenCmdInCurrent()
     full_path = %word_array1%
     ; strip to bare address
     full_path := RegExReplace(full_path, "Address: ", "")
-    ; Just in case ¨C remove all carriage returns (`r)
+    ; Just in case â€“ remove all carriage returns (`r)
     StringReplace, full_path, full_path, `r, , all
     IfInString full_path, \
     {

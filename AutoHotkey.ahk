@@ -1,24 +1,19 @@
-﻿/*
-    配置变量
-*/
-
-;桌面模式 F1映射
+﻿;桌面模式 F1映射
 DESKTOP_F1_KEYMAP = C:\BigMoney
-EVERYTHING_APPPATH=C:\Program Files\Everything\Everything.exe
+EVERYTHING_APPPATH= C:\Program Files\Everything\Everything.exe
+SUBLIME_APPPATH   = C:\Sublime Text 2\sublime_text.exe
 
 #include menu.ahk
+#Include main.ahk
 
-^!r::  ; Assign Ctrl-Alt-R as a hotkey to restart the script.
-TrayTip, AutoHotkey.ahk, Restart after 1 second..., 1
-sleep 1000
-Reload
-return
 
 ;------------------------------------------------------------------------------
 ; Disable RWIN key
 ;------------------------------------------------------------------------------
 ;$RWIN::return
 ;!RWIN::Send, {RWIN} ; Use Alt+RWIN to toggle the 'RWIN mode'
+
+
 
 ;------------------------------------------------------------------------------
 ; Hand tool with middle button in Adobe Reader
@@ -46,26 +41,29 @@ Send {RButton up}  ; Release the left mouse button.
 return
 #IfWinActive
 
+
 ;------------------------------------------------------------------------------
 ; Ctrl+Q closes Firefox
 ;------------------------------------------------------------------------------
-#IfWinActive ahk_class MozillaWindowClass
-^q::
-Send !f
-Send !x
-return
-#IfWinActive
+;#IfWinActive ahk_class MozillaWindowClass
+;^q::
+;Send !f
+;Send !x
+;return
+;#IfWinActive
+
 
 ;------------------------------------------------------------------------------
 ; Ctrl+W closes tabs in IAR compiler or TINA-TI
 ;------------------------------------------------------------------------------
-#IfWinActive IAR Embedded Workbench IDE
-^w::
-#IfWinActive ahk_class TSchematicEditor
-^w::
-Send ^{F4}
-return
-#IfWinActive
+;#IfWinActive IAR Embedded Workbench IDE
+;^w::
+;#IfWinActive ahk_class TSchematicEditor
+;^w::
+;Send ^{F4}
+;return
+;#IfWinActive
+
 
 ;------------------------------------------------------------------------------
 ; WINDOWS KEY + H TOGGLES HIDDEN FILES
@@ -83,6 +81,7 @@ send, {F5}
 Else PostMessage, 0x111, 28931,,, A
 Return
 
+
 ;------------------------------------------------------------------------------
 ; WINDOWS KEY + Y TOGGLES FILE EXTENSIONS
 ; from http://www.howtogeek.com/howto/windows-vista/keyboard-ninja-toggle-file-extension-display-with-a-shortcut-key-in-windows/
@@ -99,36 +98,37 @@ send, {F5}
 Else PostMessage, 0x111, 28931,,, A
 Return
 
+
 ;------------------------------------------------------------------------------
 ; Google text from any app
 ; from http://superuser.com/questions/7271/most-useful-autohotkey-scripts/165220#165220
 ;------------------------------------------------------------------------------
-#g::
-MyClip := ClipboardAll
-Clipboard = ; empty the clipboard
-Send, ^c
-ClipWait, 2
-if ErrorLevel  ; ClipWait timed out.
-{
-    return
-}
-if RegExMatch(Clipboard, "^(https?://|www\.)[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(/\S*)?$")
-{
-    Run % Clipboard
-}
-else
-{
-    ; Modify some characters that screw up the URL
-    ; RFC 3986 section 2.2 Reserved Characters (January 2005):  !*'();:@&=+$,/?#[]
-    StringReplace, Clipboard, Clipboard, `r`n, %A_Space%, All
-    StringReplace, Clipboard, Clipboard, #, `%23, All
-    StringReplace, Clipboard, Clipboard, &, `%26, All
-    StringReplace, Clipboard, Clipboard, +, `%2b, All
-    StringReplace, Clipboard, Clipboard, ", `%22, All
-    Run % "http://www.google.com/#hl=en&q=" . clipboard ; uriEncode(clipboard)
-}
-Clipboard := MyClip
-return
+;#g::
+;MyClip := ClipboardAll
+;Clipboard = ; empty the clipboard
+;Send, ^c
+;ClipWait, 2
+;if ErrorLevel  ; ClipWait timed out.
+;{
+;    return
+;}
+;if RegExMatch(Clipboard, "^(https?://|www\.)[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(/\S*)?$")
+;{
+;    Run % Clipboard
+;}
+;else
+;{
+;    ; Modify some characters that screw up the URL
+;    ; RFC 3986 section 2.2 Reserved Characters (January 2005):  !*'();:@&=+$,/?#[]
+;    StringReplace, Clipboard, Clipboard, `r`n, %A_Space%, All
+;    StringReplace, Clipboard, Clipboard, #, `%23, All
+;    StringReplace, Clipboard, Clipboard, &, `%26, All
+;    StringReplace, Clipboard, Clipboard, +, `%2b, All
+;    StringReplace, Clipboard, Clipboard, ", `%22, All
+;    Run % "http://www.google.com/#hl=en&q=" . clipboard ; uriEncode(clipboard)
+;}
+;Clipboard := MyClip
+;return
 
 ;------------------------------------------------------------------------------
 ; Google translate selected text
@@ -446,6 +446,7 @@ FormatTime, T, %A_Now%, hh:mm:sstt ; 09:24:20AM
 SendInput %T%
 return
 
+
 ;------------------------------------------------------------------------------
 ; quick input
 ;------------------------------------------------------------------------------
@@ -454,23 +455,23 @@ return
 ;------------------------------------------------------------------------------
 ; Make windows transparent
 ;------------------------------------------------------------------------------
-#T::
-DetectHiddenWindows, on
-WinGet, curtrans, Transparent, A
-if ! curtrans
-	curtrans = 255
-newtrans := curtrans - 64
-if newtrans > 0
-{
-	WinSet, Transparent, %newtrans%, A
+;#T::
+;DetectHiddenWindows, on
+;WinGet, curtrans, Transparent, A
+;if ! curtrans
+;	curtrans = 255
+;newtrans := curtrans - 64
+;if newtrans > 0
+;{
+;	WinSet, Transparent, %newtrans%, A
 
-}
-else
-{
-	WinSet, Transparent, 255, A
-	WinSet, Transparent, OFF, A
-}
-return
+;}
+;else
+;{
+;	WinSet, Transparent, 255, A
+;	WinSet, Transparent, OFF, A
+;}
+;return
 
 #w::
 DetectHiddenWindows, on
@@ -481,6 +482,7 @@ return
 WinSet, Transparent, 255, A
 WinSet, Transparent, OFF, A
 return
+
 
 ;------------------------------------------------------------------------------
 ;#g::  ; Press Win+G to show the current settings of the window under the mouse.
@@ -519,14 +521,14 @@ return
 ;------------------------------------------------------------------------------
 ; Win+V: Paste as plain text from clipboard
 ;------------------------------------------------------------------------------
-#v::
-   Clip0 = %ClipBoardAll%
-   ClipBoard = %ClipBoard%       ; Convert to plain text
-   Send ^v                       ; For best compatibility: SendPlay
-   Sleep 50                      ; Don't change clipboard while it is pasted! (Sleep > 0)
-   ClipBoard = %Clip0%           ; Restore original ClipBoard
-   VarSetCapacity(Clip0, 0)      ; Free memory
-Return
+;#v::
+;   Clip0 = %ClipBoardAll%
+;   ClipBoard = %ClipBoard%       ; Convert to plain text
+;   Send ^v                       ; For best compatibility: SendPlay
+;   Sleep 50                      ; Don't change clipboard while it is pasted! (Sleep > 0)
+;   ClipBoard = %Clip0%           ; Restore original ClipBoard
+;   VarSetCapacity(Clip0, 0)      ; Free memory
+;Return
 
 
 ;------------------------------------------------------------------------------
@@ -558,16 +560,8 @@ return
 #Q::Send !{F4}
 
 
-
-/*
-    置顶操作
-*/
-
-
-/*
-    桌面情况下,F1映射
-*/
 ; Example #1: 最大化活动窗口并显示其唯一 ID:
+
 Always_OnTop()
 {
   static active_id = -1
@@ -582,101 +576,15 @@ return
 
 
 
-/*
-#n::
-;run your program, save the proccess ID
-	Run, gvim, , , thePid
-	;add that process to a group
-	GroupAdd, blockAltTab, % "ahk_pid " thePid
-	;wait for the process to close and exit
-	;MsgBox This hotkey is now owned by the script.
-	
-	Process, waitClose, %thePid%
-	;ExitApp
-
-;if a window from the blockAltTab group is in the foreground then block alt+tab
-#IfWinActive, ahk_group blockAltTab
-SoundBeep
-;Hotkey, #g , Off
-#g::send g
-#IfWinActive
-
-IfWinNotActive, ahk_group blockAltTab
-Hotkey, #g , On
-#IfWinNotActive
-*/
-
-;#p::
-;curentid := WinExist("A")
-;WinGetActiveTitle, ActiveWinTitle 
-;WinMaximize, A
-;MsgBox The value in the variable named Var is %OutputVar%.
-;if (ActiveWinTitle="")
-;  SoundBeep
-;sListLines = 1
-;F1::
-;  ;IfWinExist , ahk_group F1_KEYMAP_PID
-;    ; 对于所有的脚本的初始默认设置为 "ListLines On".
-;  if(sListLines <> 0)
-;  {
-;    SoundBeep 70,500 
-;    sListLines := 0
-;    ;Run,explore %DESKTOP_F1_KEYMAP%, , ,thePid
-;    Run, C:\Program Files\Notepad++\notepad++.exe, , , thePid
-;    ;Process, waitClose, %thePid%
-;    ;WinActivate, ahk_pid %thePid%
-;    ;MsgBox, , , %thePid%,
-;    ;WinMaximize, ahk_pid %thePid%
-;    ;MsgBox, , , %thePid%, 
-;    ;pid := %thePid%
-;    GroupAdd, blockAltTab, % "ahk_pid " thePid
-;    ;WinGet, active_id, ID, A
-;    ;pid := thePid
-;    ;GroupAdd, F1_KEYMAP_PID, % "ahk_pid" thePid
-;  }
-;  WinMaximize, ahk_pid %thePid%
-;  ;WinMaximize, ahk_id %active_id%
-;  ;WinActivate, ahk_pid %pid%
-;  IfWinActive, ahk_group blockAltTab
-;  {
-    
-
-;      ;MsgBox %pid%
-;      ;WinActivate F1_KEYMAP_PID
-;      MsgBox, , , "acitove", 
-;      ;SoundBeep 523,500 
-;      SoundPlay *16
-;      ;SoundBeep
-;  }
-;  else
-;  {
-;      MsgBox, , , "not acitove", 
-;      SoundBeep 10,500 
-;      ;Run,explore %DESKTOP_F1_KEYMAP%, , ,thePid
-;      ;GroupAdd, F1_KEYMAP_PID, % "ahk_pid" thePid
-;      ;WinWait Untitled - Notepad
-;      ;WinActivate
-;  }
-;return
-
-;#WinActivate, "Program Manager"
-;F5::
-;  WinGetActiveTitle, OutputVar  
-;  MsgBox, , , %OutputVar%,
-
-;#IfWinActive, ""
-
 RWIN::
-;WinGetClass, class, A
-;MsgBox, The active window's class is "%class%".
-WinGetActiveTitle, Title
-MsgBox, The active window is "%Title%".
 
-return
+;获取类名
+WinGetClass, class, A
+MsgBox, The active window's class is "%class%".
 
-F7::
-var = http://google.com 
-Run, %Var%
+;获取标题
+;WinGetActiveTitle, Title
+;MsgBox, The active window is "%Title%".
 return
 
 
@@ -695,29 +603,52 @@ desktop_f3()
   {
     SoundBeep, 
     Run, %EVERYTHING_APPPATH%, , , thePid
-    ;Run, Target [, WorkingDir, Max|Min|Hide|UseErrorLevel, OutputVarPID]
     GroupAdd, everythin_group, % "ahk_pid " thePid
   }  
   return
 }
 
-/*
+desktop_f1()
+{
+  global SUBLIME_APPPATH
+  IfWinExist, ahk_group sublimetext_group
+  {
+    WinActivate,
+  }
+  else
+  {
+    SoundBeep, 
+    Run, %SUBLIME_APPPATH%, , , thePid
+    GroupAdd, sublimetext_group, % "ahk_pid " thePid
+  }  
+  return
+}
 
-*/
 #If WinActive("ahk_class WorkerW") or WinActive("ahk_class Progman") or WinActive("ahk_class Button")
   F3:: desktop_f3()
-  F6:: SoundBeep 523,500 
-
-
-
+  F1:: desktop_f1()
 
 explorer_alt_g()
 {
+  path := CopySelection()
+  if path = 
+      return 
+  SplitPath, path, , dir 
+  ;clipboard = %dir%
+  MouseGetPos,x0
+  tooltip File Location: "%clipboard%" copied.
+  loop
+  {
+      MouseGetPos,x1 ;
+      if x1!=%x0%
+      { 
+          tooltip
+          break
+      }
+  }
   Run,C:\Program Files\Git\bin\sh.exe  --login -i, , , thePid
-  Send,cd /c/Bter{Enter}
+  Send,cd %dir%{Enter}
 }
-
 
 #If WinActive("ahk_class CabinetWClass")
   !G:: explorer_alt_g()
-
