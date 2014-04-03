@@ -74,12 +74,12 @@ return
 #IfWinExist
 
 ;;打开文件的属性窗口
-^p::
-send ^c 
-sleep,100
-IfExist, %clipboard%
-    Run, properties %clipboard%
-return
+;^p::
+;send ^c 
+;sleep,100
+;IfExist, %clipboard%
+;    Run, properties %clipboard%
+;return
 
 ;;Alt+1 copy文件名 
 !1::
@@ -386,7 +386,7 @@ Loop 8  ; <-- Increase this value to scroll faster.
     SendMessage, 0x114, 1, 0, %fcontrol%, A  ; 0x114 is WM_HSCROLL and the 1 after it is SB_LINERIGHT.
 return
 
-CapsLock::Send !{Tab}
+;CapsLock::Send !{Tab}
 
 #IfWinActive ahk_class CabinetWClass
 ; open ‘cmd’ in the current directory

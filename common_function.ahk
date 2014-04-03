@@ -10,3 +10,4 @@ CopySelection()
     }
     return clipboard
 }
+
